@@ -547,3 +547,14 @@ p {
     flex-direction: column;
   }
 }
+
+.footer2{
+      /* display: flex; */
+    /* align-items: center; */
+    justify-content: space-between;
+    /* gap: 24px; */
+    padding: 8px clamp(18px, 4vw, 64px);
+    color: #fff;
+    background: #212529;
+}
+

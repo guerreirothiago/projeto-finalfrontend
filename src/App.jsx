@@ -284,9 +284,9 @@ function App() {
         <section className="booking-section" id="contato">
           <div>
             <p className="section-kicker">Reservas</p>
-            <h2>Planeje sua estadia</h2>
+            <h2>Planeje sua estadia</h2><br></br>
             <p>
-              Fale com a equipe da pousada para montar uma proposta para casal, família ou
+               Fale com a equipe da pousada para montar uma proposta para casal, família ou
               comemoração especial de Dia das Mães.
             </p>
           </div>
@@ -316,13 +316,17 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <img src={asset('img/logo-encantodojaraqui.png')} alt="Pousada Encantos do Jaraqui" />
-        <div>
-          <strong>Pousada Encantos do Jaraqui</strong>
-          <p>Natureza, acolhimento e sabores amazônicos em Manaus.</p>
-        </div>
-        <span>@encantosdojaraqui</span>
+      <footer class="footer">
+        <img src="img/logo-encantodojaraqui.png" alt="Pousada Encantos do Jaraqui"/>
+          <div>
+            <strong>Pousada Encantos do Jaraqui</strong><p>
+              Natureza, acolhimento e sabores amazônicos em Manaus.</p>
+          </div>
+          <span>@encantosdojaraqui</span>
+      </footer>
+
+      <footer class="footer2 text-center">
+        Todos os direitos reservados - 2026
       </footer>
     </div>
   );
