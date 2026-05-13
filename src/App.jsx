@@ -1,73 +1,109 @@
 import { useEffect, useState } from 'react';
-import './styles.css';
 
-const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+let asset = (path) => `${import.meta.env.BASE_URL}${path}`;
 
 let slides = [
   {
-    title: 'Especial Mês das Mães',
-    description: 'Celebre o amor de mãe no coração da Amazônia, com o espetáculo do Encontro das Águas como cenário.',
-    buttonText: 'Conheça os pacotes',
-    buttonLink: '#maes',
-    image: asset('img/hotel-na-amazonia1148x860.jpg'),
+    eyebrow: 'Especial Mês das Mães',
+    title: 'Encantos do Jaraqui',
+    description:
+      'Um refúgio amazônico para celebrar mães com rio, floresta, gastronomia regional e o Encontro das Águas como cenário.',
+    image: asset('img/encontro das águas.jpeg'),
+    action: 'Ver pacote especial',
+    href: '#maes',
   },
   {
-    title: 'Descanso e Natureza',
-    description: 'Tranquilidade ribeirinha, culinária regional de primeira e o melhor jaraqui frito da região.',
-    buttonText: 'Veja nossas suítes',
-    buttonLink: '#acomodacoes',
+    eyebrow: 'Dia das Mães',
+    title: 'Mãe e filha na Amazônia',
+    description:
+      'Um presente cheio de afeto para viver dias de descanso, fotos lindas e memória de família.',
+    image: asset('img/Mês das Mães foto mãe e filha.png'),
+    action: 'Reservar homenagem',
+    href: '#contato',
+  },
+  {
+    eyebrow: 'Promoção de Maio',
+    title: 'Minimalista, rosa e especial',
+    description:
+      'Uma experiência delicada para celebrar mães com conforto, carinho e sabores regionais.',
+    image: asset('img/Mês das mães Dia das mães Minimalista Rosa.png'),
+    action: 'Ver especial mães',
+    href: '#maes',
+  },
+];
+
+let experiences = [
+  {
+    title: 'Passeio no Encontro das Águas',
+    text: 'Roteiro de barco para contemplar o encontro do Rio Negro com o Solimões, com paradas para fotos e observação da paisagem.',
+    image: asset('img/encontro das águas.jpeg'),
+  },
+  {
+    title: 'Café regional na varanda',
+    text: 'Tapioca, frutas amazônicas, sucos naturais e aquele começo de manhã calmo que combina com rede e brisa de rio.',
+    image: asset('img/café da manhã regional.jpg'),
+  },
+  {
+    title: 'Gastronomia do Jaraqui',
+    text: 'Pratos com peixe fresco, temperos locais e acompanhamentos que valorizam a cozinha manauara.',
+    image: asset('img/Jaraqui.webp'),
+  },
+  {
+    title: 'Pesca do pirarucu',
+    text: 'Vivência guiada para conhecer um dos peixes mais impressionantes da Amazônia, com segurança e acompanhamento local.',
+    image: asset('img/pesca do pirarucu.jpeg'),
+  },
+  {
+    title: 'Passeio de barco pela região',
+    text: 'Navegação tranquila por paisagens amazônicas, ideal para relaxar, observar a natureza e registrar momentos em família.',
+    image: asset('img/passeio-barco-3.jpg.webp'),
+  },
+  {
+    title: 'Banho com boto',
+    text: 'Experiência marcante nas águas amazônicas, feita com orientação e cuidado para aproximar visitantes da cultura local.',
+    image: asset('img/banho com boto.jpeg'),
+  },
+];
+
+let rooms = [
+  {
+    title: 'Suíte Rio Negro',
+    description: 'Ideal para casais, com cama queen, ar-condicionado, rede e vista para área verde.',
+    image: asset('img/imagens da pousada.jpg'),
+  },
+  {
+    title: 'Chalé Família',
+    description: 'Espaço amplo para descanso em grupo, com varanda privativa e atmosfera ribeirinha.',
     image: asset('img/hotel-na-amazonia-juma-amazon4.jpg'),
   },
   {
-    title: 'Pacotes Exclusivos',
-    description: 'Momentos inesquecíveis que ela merece. Conheça nossos mimos e passeios fluviais.',
-    buttonText: 'Reserve agora',
-    buttonLink: '#contato',
+    title: 'Suíte Mirante',
+    description: 'Mais privacidade, madeira natural e vista elevada para aproveitar o fim de tarde.',
+    image: asset('img/hotel-na-amazonia-mirante-gaviao-1-1431x860.jpg'),
+  },
+  {
+    title: 'Apartamento Jardim',
+    description: 'Opção prática e confortável para quem busca descanso, ar-condicionado e acesso fácil às áreas comuns.',
+    image: asset('img/hotel-na-amazonia1148x860.jpg'),
+  },
+  {
+    title: 'Chalé Amazônia',
+    description: 'Ambiente acolhedor com clima rústico, varanda para relaxar e espaço pensado para dias de pausa.',
     image: asset('img/hotel-na-amazonia-juma-amazon-1147x860.jpg'),
   },
-];
-
-let features = [
   {
-    title: 'Gastronomia Amazonense',
-    text: 'Pratos feitos com ingredientes frescos da região, como peixe jaraqui, frutas silvestres e temperos típicos.',
-    image: asset('img/Jaraqui.webp'),
-    gallery: [
-      asset('img/gastronomia-manauara-8.webp'),
-      asset('img/pesca do pirarucu.jpeg'),
-    ],
-  },
-  {
-    title: 'Passeios Personalizados',
-    text: 'Rotas de lancha, trilhas na mata e visitas guiadas ao Encontro das Águas e comunidades ribeirinhas.',
-    image: asset('img/banho com boto.jpeg'),
-  },
-  {
-    title: 'Ambiente Aconchegante',
-    text: 'Suítes arejadas com redes na varanda, decoração em madeira natural e atendimento acolhedor.',
-    image: asset('img/passeio-barco-3.jpg.webp'),
+    title: 'Suíte Jaraqui',
+    description: 'Acomodação aconchegante para casal ou pequena família, com decoração regional e conforto para a estadia.',
+    image: asset('img/img1.jpg'),
   },
 ];
 
-let packages = [
-  {
-    title: 'Pacote Vitória-Régia',
-    items: ['Fim de semana (Sáb - Dom)', 'Café da manhã com tapioca e frutas regionais', 'Passeio de lancha no Encontro das Águas', 'Cesta de bombons de cupuaçu'],
-    buttonText: 'Reservar Vitória-Régia',
-  },
-  {
-    title: 'Pacote Flor de Jaraqui',
-    items: ['3 diárias em Suíte Master', 'Almoço especial: Jaraqui recheado', 'Massagem com óleos amazônicos', 'Drink de boas-vindas para a mãe'],
-    buttonText: 'Reservar Flor de Jaraqui',
-  },
-];
-
-let galleryImages = [
-  asset('img/img1.jpg'),
-  asset('img/img2.jpg'),
-  asset('img/hotel-na-amazonia-mirante-gaviao-1-1431x860.jpg'),
-  asset('img/hotel-na-amazonia1148x860.jpg'),
-  asset('img/encontro das águas.jpeg'),
+let motherPackage = [
+  'Duas diárias para mãe e acompanhante',
+  'Café regional especial com frutas e tapioca',
+  'Almoço amazônico com jaraqui ou pirarucu',
+  'Passeio de barco no Encontro das Águas',
+  'Mimo floral e sobremesa de cupuaçu',
 ];
 
 function App() {
@@ -75,164 +111,189 @@ function App() {
   let [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    let interval = setInterval(() => {
+    let timer = setInterval(() => {
       setCurrentSlide((current) => (current + 1) % slides.length);
-    }, 5000);
+    }, 5500);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
 
+  let goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  let closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
-    <>
-      <nav>
-        <div className="logo">
-          <img src={asset('img/logo-encantodojaraqui.png')} alt="Logo Pousada" />
-          <span className="logo-text">
-            Encantos do <span className="jaraqui">Jaraqui</span>
+    <div
+      className="site-shell"
+      style={{ '--waters-bg': `url("${asset('img/encontro das águas.jpeg')}")` }}
+    >
+      <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a className="brand navbar-brand" href="#inicio" onClick={closeMenu}>
+          <img src={asset('img/logo-encantodojaraqui.png')} alt="Pousada Encantos do Jaraqui" />
+          <span>
+            <strong>Encantos</strong>
+            do Jaraqui
           </span>
-        </div>
+        </a>
 
         <button
-          className="menu-toggle"
+          className="menu-button navbar-toggler"
+          type="button"
           aria-label="Abrir menu"
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span />
+          <span />
+          <span />
         </button>
 
-        <ul className={menuOpen ? 'active' : ''}>
-          <li>
-            <a href="#inicio" onClick={() => setMenuOpen(false)}>
-              Início
-            </a>
-          </li>
-          <li>
-            <a href="#sobre" onClick={() => setMenuOpen(false)}>
-              Sobre
-            </a>
-          </li>
-          <li>
-            <a href="#maes" onClick={() => setMenuOpen(false)}>
-              Especial Mães
-            </a>
-          </li>
-          <li>
-            <a href="#acomodacoes" onClick={() => setMenuOpen(false)}>
-              Acomodações
-            </a>
-          </li>
-          <li>
-            <a href="#contato" onClick={() => setMenuOpen(false)}>
-              Contato
-            </a>
-          </li>
-        </ul>
+        <div className={`nav-links navbar-nav ${menuOpen ? 'is-open' : ''}`}>
+          <a className="nav-link" href="#sobre" onClick={closeMenu}>Sobre</a>
+          <a className="nav-link" href="#maes" onClick={closeMenu}>Mês das Mães</a>
+          <a className="nav-link" href="#experiencias" onClick={closeMenu}>Experiências</a>
+          <a className="nav-link" href="#acomodacoes" onClick={closeMenu}>Acomodações</a>
+          <a className="nav-link" href="#contato" onClick={closeMenu}>Contato</a>
+        </div>
       </nav>
 
-      <header id="inicio">
+      <header className="hero" id="inicio">
         {slides.map((slide, index) => (
-          <div
+          <article
+            className={`hero-slide ${index === currentSlide ? 'is-active' : ''}`}
             key={slide.title}
-            className={`slide ${index === currentSlide ? 'active' : ''}`}
-            style={{ backgroundImage: `url('${slide.image}')` }}
+            style={{ backgroundImage: `url("${slide.image}")` }}
+            aria-hidden={index !== currentSlide}
           >
             <div className="hero-content">
+              <p className="eyebrow">{slide.eyebrow}</p>
               <h1>{slide.title}</h1>
               <p>{slide.description}</p>
-              <a href={slide.buttonLink} className="btn hero-btn">
-                {slide.buttonText}
+              <a className="primary-button btn btn-lg" href={slide.href}>
+                {slide.action}
               </a>
             </div>
-          </div>
+          </article>
         ))}
+
+        <div className="slide-controls" aria-label="Selecionar slide">
+          {slides.map((slide, index) => (
+            <button
+              className={index === currentSlide ? 'is-active' : ''}
+              type="button"
+              key={slide.title}
+              aria-label={`Ir para ${slide.title}`}
+              onClick={() => goToSlide(index)}
+            />
+          ))}
+        </div>
       </header>
 
       <main>
-        <section id="sobre" className="section-glass">
-          <h2>Sobre a Pousada</h2>
-          <p>
-            A <strong>Pousada Encantos do Jaraqui</strong> une charme ribeirinho, conforto contemporâneo e experiências autênticas na Amazônia. Nosso refúgio fica a poucos minutos do Encontro das Águas, em um ambiente perfeito para relaxar, observar a fauna e conhecer a cultura local.
-          </p>
-
-          <div className="feature-cards">
-            {features.map((feature) => (
-              <div key={feature.title} className="feature-card">
-                <img src={feature.image} alt={feature.title} className="feature-img" />
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-                {feature.gallery && (
-                  <div className="culinary-gallery">
-                    {feature.gallery.map((src) => (
-                      <img key={src} src={src} alt="Culinária" className="culinary-img" />
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+        <section className="intro-section" id="sobre">
+          <div>
+            <h2>Um descanso com alma amazônica</h2>
           </div>
+          <p>
+            A Pousada Encantos do Jaraqui combina hospedagem acolhedora, comida regional e
+            experiências de rio para quem deseja viver Manaus com calma, beleza e cuidado.
+          </p>
         </section>
 
-        <section id="maes" className="section-glass">
-          <h2>Homenagem a Quem Nos Deu a Vida</h2>
-          <p>
-            Neste mês de maio, a <strong>Pousada Encantos do Jaraqui</strong> preparou uma experiência única para você presentear sua mãe. Desfrute da brisa do rio, de um cardápio regional assinado pelas nossas cozinheiras nativas e do contato revigorante com a floresta.
-          </p>
-
-          <div className="cards-container">
-            {packages.map((pack) => (
-              <div key={pack.title} className="card">
-                <h3>{pack.title}</h3>
-                <ul>
-                  {pack.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <a href="#contato" className="btn">
-                  {pack.buttonText}
-                </a>
-              </div>
-            ))}
+        <section className="mothers-section" id="maes">
+          <div className="mothers-copy">
+            <h2>Mês das Mães no Encontro das Águas</h2>
+            <p>
+              Uma programação afetiva para presentear quem sempre foi porto seguro. O pacote
+              especial une descanso, sabores amazônicos e um passeio inesquecível pelas águas.
+            </p>
+            <ul>
+              {motherPackage.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <a className="primary-button btn" href="#contato">Reservar homenagem</a>
           </div>
-        </section>
-
-        <section id="acomodacoes" className="section-glass">
-          <h2>Nossas Acomodações</h2>
-          <p>
-            Chalés rústicos e confortáveis, construídos com madeira de manejo sustentável e projetados para oferecer uma vista deslumbrante do rio. Todas as suítes possuem ar-condicionado, varanda com rede e mosquiteiros, unindo o conforto moderno ao charme ribeirinho.
-          </p>
-
-          <div className="gallery">
-            {galleryImages.map((src) => (
-              <img key={src} src={src} alt="Acomodações" className="gallery-img" />
-            ))}
-          </div>
-        </section>
-
-        <section id="contato" className="section-glass">
-          <h2>Contato e Reservas</h2>
-          <p>Para garantir sua estadia ou pedir um orçamento especial, fale com nossa equipe de atendimento cordial e treinada.</p>
-          <div className="contact-grid">
+          <div className="mothers-card">
+            <video
+              src={asset('img/Promoção desconto dia das mães presente rosa vídeo story.mp4')}
+              title="Promoção do mês das mães"
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
             <div>
-              <p><strong>Telefone:</strong> (92) 90000-0000</p>
-              <p><strong>E-mail:</strong> contato@encantosdojaraqui.com.br</p>
-              <p><strong>Localização:</strong> Manaus, AM</p>
+              <span>Maio</span>
+              <strong>Momentos para guardar</strong>
             </div>
-            <div>
-              <p>Queremos preparar um pacote sob medida para sua família. Informe a data desejada e o número de hóspedes para receber sua proposta.</p>
-            </div>
+          </div>
+        </section>
+
+        <section className="content-section" id="experiencias">
+          <div className="section-heading">
+            <h2>Experiências da pousada</h2>
+          </div>
+          <div className="card-grid">
+            {experiences.map((item) => (
+              <article className="image-card card h-100 border-0" key={item.title}>
+                <img className="card-img-top" src={item.image} alt={item.title} />
+                <div className="card-body">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="content-section" id="acomodacoes">
+          <div className="section-heading">
+            <h2>Acomodações</h2>
+          </div>
+          <div className="room-grid">
+            {rooms.map((room) => (
+              <article className="room-card card h-100 border-0" key={room.title}>
+                <img className="card-img-top" src={room.image} alt={room.title} />
+                <div className="card-body">
+                  <h3>{room.title}</h3>
+                  <p>{room.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="booking-section" id="contato">
+          <div>
+            <p className="section-kicker">Reservas</p>
+            <h2>Planeje sua estadia</h2>
+            <p>
+              Fale com a equipe da pousada para montar uma proposta para casal, família ou
+              comemoração especial de Dia das Mães.
+            </p>
+          </div>
+          <div className="contact-panel">
+            <p><strong>WhatsApp:</strong> (92) 90000-0000</p>
+            <p><strong>E-mail:</strong> contato@encantosdojaraqui.com.br</p>
+            <p><strong>Local:</strong> Manaus, Amazonas</p>
           </div>
         </section>
       </main>
 
-      <footer>
-        <p><strong>Pousada Encantos do Jaraqui</strong> - Manaus, AM, Brasil</p>
-        <p>Reserva e Atendimento: (92) 90000-0000 | contato@encantosdojaraqui.com.br</p>
-        <p className="socials">Siga-nos: @encantosdojaraqui</p>
-        <p style={{ marginTop: '20px', fontSize: '0.8rem', opacity: 0.7 }}>&copy; 2026 Todos os direitos reservados.</p>
+      <footer className="footer">
+        <img src={asset('img/logo-encantodojaraqui.png')} alt="Pousada Encantos do Jaraqui" />
+        <div>
+          <strong>Pousada Encantos do Jaraqui</strong>
+          <p>Natureza, acolhimento e sabores amazônicos em Manaus.</p>
+        </div>
+        <span>@encantosdojaraqui</span>
       </footer>
-    </>
+    </div>
   );
 }
 
