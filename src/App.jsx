@@ -109,6 +109,7 @@ let motherPackage = [
 function App() {
   let [currentSlide, setCurrentSlide] = useState(0);
   let [menuOpen, setMenuOpen] = useState(false);
+  let [mensagem, setMensagem] = useState('');
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -126,38 +127,50 @@ function App() {
     setMenuOpen(false);
   };
 
+  let enviarFormulario = (e) => {
+    e.preventDefault();
+
+    setMensagem('Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.');
+
+    setTimeout(() => {
+      setMensagem('');
+    }, 3000);
+  };
+
   return (
     <div
       className="site-shell"
       style={{ '--waters-bg': `url("${asset('img/encontro das águas.jpeg')}")` }}
     >
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a className="brand navbar-brand" href="#inicio" onClick={closeMenu}>
-          <img src={asset('img/logo-encantodojaraqui.png')} alt="Pousada Encantos do Jaraqui" />
-          <span>
-            <strong>Encantos</strong>
-            do Jaraqui
-          </span>
-        </a>
+        <div className="container-fluid">
+          <a className="brand navbar-brand" href="#inicio" onClick={closeMenu}>
+            <img src={asset('img/logo-encantodojaraqui.png')} alt="Pousada Encantos do Jaraqui" />
+            <span>
+              <strong>Encantos</strong>
+              do Jaraqui
+            </span>
+          </a>
 
-        <button
-          className="menu-button navbar-toggler"
-          type="button"
-          aria-label="Abrir menu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+          <button
+            className="menu-button navbar-toggler"
+            type="button"
+            aria-label="Abrir menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
 
-        <div className={`nav-links navbar-nav ${menuOpen ? 'is-open' : ''}`}>
-          <a className="nav-link" href="#sobre" onClick={closeMenu}>Sobre</a>
-          <a className="nav-link" href="#maes" onClick={closeMenu}>Mês das Mães</a>
-          <a className="nav-link" href="#experiencias" onClick={closeMenu}>Experiências</a>
-          <a className="nav-link" href="#acomodacoes" onClick={closeMenu}>Acomodações</a>
-          <a className="nav-link" href="#contato" onClick={closeMenu}>Contato</a>
+          <div className={`nav-links navbar-nav ${menuOpen ? 'is-open' : ''}`}>
+            <a className="nav-link" href="#sobre" onClick={closeMenu}>Sobre</a>
+            <a className="nav-link" href="#maes" onClick={closeMenu}>Mês das Mães</a>
+            <a className="nav-link" href="#experiencias" onClick={closeMenu}>Experiências</a>
+            <a className="nav-link" href="#acomodacoes" onClick={closeMenu}>Acomodações</a>
+            <a className="nav-link" href="#contato" onClick={closeMenu}>Contato</a>
+          </div>
         </div>
       </nav>
 
@@ -278,9 +291,27 @@ function App() {
             </p>
           </div>
           <div className="contact-panel">
-            <p><strong>WhatsApp:</strong> (92) 90000-0000</p>
-            <p><strong>E-mail:</strong> contato@encantosdojaraqui.com.br</p>
-            <p><strong>Local:</strong> Manaus, Amazonas</p>
+            <form className="contact-form" id="contact-form" onSubmit={enviarFormulario}>
+              {mensagem && (
+                <div className="alert alert-success">
+                  {mensagem}
+                </div>
+              )}
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">Nome</label>
+                <input type="text" className="form-control" id="name" required />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input type="email" className="form-control" id="email" required />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="message" className="form-label">Mensagem</label>
+                <textarea className="form-control" id="message" rows="4" required></textarea>
+              </div>
+
+              <button type="submit" className="primary-button btn">Enviar mensagem</button>
+            </form>
           </div>
         </section>
       </main>
