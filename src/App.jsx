@@ -1,27 +1,29 @@
 import { useEffect, useState } from 'react';
 import './styles.css';
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 let slides = [
   {
     title: 'Especial Mês das Mães',
     description: 'Celebre o amor de mãe no coração da Amazônia, com o espetáculo do Encontro das Águas como cenário.',
     buttonText: 'Conheça os pacotes',
     buttonLink: '#maes',
-    image: '/img/hotel-na-amazonia1148x860.jpg',
+    image: asset('img/hotel-na-amazonia1148x860.jpg'),
   },
   {
     title: 'Descanso e Natureza',
     description: 'Tranquilidade ribeirinha, culinária regional de primeira e o melhor jaraqui frito da região.',
     buttonText: 'Veja nossas suítes',
     buttonLink: '#acomodacoes',
-    image: '/img/hotel-na-amazonia-juma-amazon4.jpg',
+    image: asset('img/hotel-na-amazonia-juma-amazon4.jpg'),
   },
   {
     title: 'Pacotes Exclusivos',
     description: 'Momentos inesquecíveis que ela merece. Conheça nossos mimos e passeios fluviais.',
     buttonText: 'Reserve agora',
     buttonLink: '#contato',
-    image: '/img/hotel-na-amazonia-juma-amazon-1147x860.jpg',
+    image: asset('img/hotel-na-amazonia-juma-amazon-1147x860.jpg'),
   },
 ];
 
@@ -29,21 +31,21 @@ let features = [
   {
     title: 'Gastronomia Amazonense',
     text: 'Pratos feitos com ingredientes frescos da região, como peixe jaraqui, frutas silvestres e temperos típicos.',
-    image: '/img/Jaraqui.webp',
+    image: asset('img/Jaraqui.webp'),
     gallery: [
-      '/img/gastronomia-manauara-8.webp',
-      '/img/pesca do pirarucu.jpeg',
+      asset('img/gastronomia-manauara-8.webp'),
+      asset('img/pesca do pirarucu.jpeg'),
     ],
   },
   {
     title: 'Passeios Personalizados',
     text: 'Rotas de lancha, trilhas na mata e visitas guiadas ao Encontro das Águas e comunidades ribeirinhas.',
-    image: '/img/banho com boto.jpeg',
+    image: asset('img/banho com boto.jpeg'),
   },
   {
     title: 'Ambiente Aconchegante',
     text: 'Suítes arejadas com redes na varanda, decoração em madeira natural e atendimento acolhedor.',
-    image: '/img/passeio-barco-3.jpg.webp',
+    image: asset('img/passeio-barco-3.jpg.webp'),
   },
 ];
 
@@ -61,11 +63,11 @@ let packages = [
 ];
 
 let galleryImages = [
-  '/img/img1.jpg',
-  '/img/img2.jpg',
-  '/img/hotel-na-amazonia-mirante-gaviao-1-1431x860.jpg',
-  '/img/hotel-na-amazonia1148x860.jpg',
-  '/img/encontro das águas.jpeg',
+  asset('img/img1.jpg'),
+  asset('img/img2.jpg'),
+  asset('img/hotel-na-amazonia-mirante-gaviao-1-1431x860.jpg'),
+  asset('img/hotel-na-amazonia1148x860.jpg'),
+  asset('img/encontro das águas.jpeg'),
 ];
 
 function App() {
@@ -84,7 +86,7 @@ function App() {
     <>
       <nav>
         <div className="logo">
-          <img src="/img/logo-encantodojaraqui.png" alt="Logo Pousada" />
+          <img src={asset('img/logo-encantodojaraqui.png')} alt="Logo Pousada" />
           <span className="logo-text">
             Encantos do <span className="jaraqui">Jaraqui</span>
           </span>
