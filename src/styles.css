@@ -50,7 +50,7 @@ img {
 .site-shell {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(14, 39, 34, 0.62), rgba(14, 39, 34, 0.72)),
+    linear-gradient(rgba(14, 39, 34, 0.48), rgba(14, 39, 34, 0.58)),
     var(--waters-bg) center / cover fixed;
 }
 
@@ -176,8 +176,9 @@ img {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(11, 31, 27, 0.86), rgba(11, 31, 27, 0.36) 56%, rgba(11, 31, 27, 0.54)),
-    linear-gradient(0deg, rgba(11, 31, 27, 0.78), transparent 45%);
+    linear-gradient(90deg, rgba(11, 31, 27, 0.72), rgba(11, 31, 27, 0.24) 56%, rgba(11, 31, 27, 0.42)),
+    linear-gradient(0deg, rgba(11, 31, 27, 0.64), transparent 45%),
+    rgba(255, 255, 255, 0.06);
 }
 
 .hero-slide.is-active {
